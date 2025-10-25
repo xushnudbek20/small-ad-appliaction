@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/test-utils',
     '@nuxt/ui',
+    '@vite-pwa/nuxt'
   ],
   css: ['~/assets/css/main.css']
 })
