@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { TabsItem } from '@nuxt/ui'
 const route = useRoute()
-console.log('route.path', route);
 
 const currentTab = ref('/')
 const items = ref<TabsItem[]>([
