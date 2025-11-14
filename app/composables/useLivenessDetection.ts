@@ -170,7 +170,7 @@ export function useLivenessDetection() {
   state.isFaceDetected = !!detection.detections && detection.detections.length > 0 && (detection.confidence ?? 0) > (detectionConfig.minDetectionConfidence ?? 0.7)
 
     if (!state.isFaceDetected) {
-      state.currentInstruction = 'Please position your face in the frame'
+    state.currentInstruction = 'Iltimos, yuzingizni ramkaga joylashtiring'
       state.isFaceInFrame = false
       state.faceDistance = 'none'
       return
@@ -188,19 +188,19 @@ export function useLivenessDetection() {
     }
 
     if (phase.value === 'detecting-face') {
-      state.currentInstruction = 'Face detected! Preparing liveness check...'
+  state.currentInstruction = 'Yuz aniqlandi! Hayotiylik tekshiruviga tayyorlanmoqda...'
       return
     }
 
     if (phase.value === 'checking-head-left') {
       const movement = detectHeadMovement(detection)
-      state.currentInstruction = 'Turn your head to the right'
+  state.currentInstruction = 'Boshingizni o\'ngga buring'
 
       if (movement.left && !state.headMovementLeft) {
         state.headMovementLeft = true
         state.isHeadMovementDetected = true
         phase.value = 'checking-position'
-        state.currentInstruction = 'Great! Now position yourself in the frame'
+  state.currentInstruction = 'Zo\'r! Endi o\'zingizni ramkaga joylashtiring'
         return
       }
     }
@@ -209,16 +209,16 @@ export function useLivenessDetection() {
       state.isFrameValid = validateFramePosition(detection, videoWidth, videoHeight)
 
       if (state.faceDistance === 'too-close') {
-        state.currentInstruction = 'Move back - you\'re too close'
+  state.currentInstruction = 'Biroz orqaga - juda yaqin turibsiz'
         return
       }
       if (state.faceDistance === 'too-far') {
-        state.currentInstruction = 'Move closer to the camera'
+  state.currentInstruction = 'Kameraga yaqinroq turing'
         return
       }
 
       if (!state.isFrameValid) {
-        state.currentInstruction = 'Match the outline - center face, show shoulders'
+  state.currentInstruction = 'Boshingizni ko\'taring, yelkalar va formangiz ko\'rsin'
         return
       }
 
@@ -227,24 +227,24 @@ export function useLivenessDetection() {
       state.isStable = stable
 
       if (!stable) {
-        state.currentInstruction = 'Hold still for a moment'
+  state.currentInstruction = 'Iltimos, bir oz harakatsiz turing'
         return
       }
 
       state.isLivenessCheckPassed = true
       phase.value = 'capturing'
-      state.currentInstruction = 'Perfect! Capturing...'
+  state.currentInstruction = 'Yaxshi! Surat olinmoqda...'
     }
   }
 
   const startDetection = () => {
     phase.value = 'detecting-face'
-    state.currentInstruction = 'Looking for your face...'
+    state.currentInstruction = 'Yuzingizni qidiryapmiz...'
 
     setTimeout(() => {
       if (state.isFaceDetected) {
         phase.value = 'checking-head-left'
-        state.currentInstruction = 'Turn your head to the right'
+        state.currentInstruction = 'Boshingizni o\'ngga buring'
         baseHeadPosition.value = null
       }
     }, 1500)
@@ -259,7 +259,7 @@ export function useLivenessDetection() {
     state.headMovementRight = false
     state.isStable = false
     state.isLivenessCheckPassed = false
-    state.currentInstruction = 'Position your face in the frame'
+    state.currentInstruction = 'Yuzingizni ramkaga joylashtiring'
     state.isFaceInFrame = false
     state.isFrameValid = false
     state.faceDistance = 'none'

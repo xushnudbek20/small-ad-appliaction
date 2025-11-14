@@ -24,15 +24,10 @@ watch(currentTab, (newVal) => {
 </script>
 
 <template>
-    <UContainer >
-      <div class="bg-white rounded-2xl mt-4 ">
-        <div class="p-2">
-          <UTabs v-model="currentTab" color="primary" variant="link" :content="false" :items="items" :ui="{trigger:'grow'}" class="w-full" />
-        </div>
-      </div>
-		
+     <div>
+		  <LayoutHeader /> 
       <div>
         <slot />
       </div>
-    </UContainer>
+     </div>
 </template>

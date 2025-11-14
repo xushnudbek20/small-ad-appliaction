@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+declare const process: { env: Record<string, string | undefined> };
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -55,6 +56,11 @@ export default defineNuxtConfig({
       enabled: true,
       suppressWarnings: true,
       type: 'module',
+    },
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl:process.env.API_BASE_URL||'https://api.salomhayot.uz/api/v1/',
     },
   },
 })
